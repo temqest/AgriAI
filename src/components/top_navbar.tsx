@@ -10,6 +10,11 @@ const navLinks = [
 ];
 
 export default function TopNavbar() {
+  // Use window.location for redirect to avoid NextRouter issues
+  const handleLogin = () => {
+    window.location.href = '/auth/log-in';
+  };
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow-md border-b border-gray-100 transition-all duration-300" style={{fontFamily: 'inherit'}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
@@ -31,16 +36,17 @@ export default function TopNavbar() {
         </div>
         {/* Sign Up / Log In Button */}
         <div className="flex items-center">
-          <a
-            href="#auth"
+          <button
+            type="button"
+            onClick={handleLogin}
             className="bg-green-700 text-white px-5 py-2 rounded-lg font-semibold shadow hover:bg-green-800 transition-colors focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2"
             style={{backgroundColor: FOREST_GREEN}}
           >
             Log In
-          </a>
+          </button>
         </div>
       </div>
-      {/* Mobile nav (optional: hamburger menu for real app) */}
+      {/* Mobile nav */}
       <div className="md:hidden flex justify-center py-2 bg-white border-t border-gray-100">
         {navLinks.map(link => (
           <a
